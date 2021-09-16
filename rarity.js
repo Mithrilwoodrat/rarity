@@ -61,23 +61,23 @@ async function main() {
       await wait(3000)
     }
 
-    result = await rarity_attribute_contract.methods.character_created(summoner_id).call()
-    if (result == false) {
-      let method_sig = web3.eth.abi.encodeFunctionSignature('point_buy(uint256,uint32,uint32,uint32,uint32,uint32,uint32)')
-      console.log('- buy point')
-      let available_attributes = utils.read_from_file('ra_point_buy_inputs.txt')
-      let attribute = available_attributes[Math.floor(Math.random() * available_attributes.length)].split(',')
-      console.log('seleted attribute: ' + attribute)
-      let data = method_sig + utils.add_pre_zero(summoner_id.toString(16, 'hex')) 
-        + utils.add_pre_zero(parseInt(attribute[0]).toString(16, 'hex')) 
-        + utils.add_pre_zero(parseInt(attribute[1]).toString(16, 'hex')) 
-        + utils.add_pre_zero(parseInt(attribute[2]).toString(16, 'hex'))
-        + utils.add_pre_zero(parseInt(attribute[3]).toString(16, 'hex')) 
-        + utils.add_pre_zero(parseInt(attribute[4]).toString(16, 'hex')) 
-        + utils.add_pre_zero(parseInt(attribute[5]).toString(16, 'hex'))
-      await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_attribute_contract_address)
-      await wait(5000)
-    }
+//     result = await rarity_attribute_contract.methods.character_created(summoner_id).call()
+//     if (result == false) {
+//       let method_sig = web3.eth.abi.encodeFunctionSignature('point_buy(uint256,uint32,uint32,uint32,uint32,uint32,uint32)')
+//       console.log('- buy point')
+//       let available_attributes = utils.read_from_file('ra_point_buy_inputs.txt')
+//       let attribute = available_attributes[Math.floor(Math.random() * available_attributes.length)].split(',')
+//       console.log('seleted attribute: ' + attribute)
+//       let data = method_sig + utils.add_pre_zero(summoner_id.toString(16, 'hex')) 
+//         + utils.add_pre_zero(parseInt(attribute[0]).toString(16, 'hex')) 
+//         + utils.add_pre_zero(parseInt(attribute[1]).toString(16, 'hex')) 
+//         + utils.add_pre_zero(parseInt(attribute[2]).toString(16, 'hex'))
+//         + utils.add_pre_zero(parseInt(attribute[3]).toString(16, 'hex')) 
+//         + utils.add_pre_zero(parseInt(attribute[4]).toString(16, 'hex')) 
+//         + utils.add_pre_zero(parseInt(attribute[5]).toString(16, 'hex'))
+//       await utils.sign_and_send_transaction(web3, private_key, data, utils.Rarity_attribute_contract_address)
+//       await wait(5000)
+//     }
 
     let start_date = new Date().getTime()
     console.log(new Date(start_date).toLocaleDateString() + ' ' + new Date(start_date).toLocaleTimeString())
@@ -127,8 +127,8 @@ async function main() {
 
     let rewards = rc_utils.scout(_class, level, strength, dexterity, constitution)
     console.log('rewards:', rewards)
-    if (rewards <= 0) {
-      console.log('rewards for attacking is 0, don\'t attack dungeon')
+    if (rewards <= 7) {
+      console.log('rewards for attacking less than 8, don\'t attack dungeon')
       return 
     }
     
