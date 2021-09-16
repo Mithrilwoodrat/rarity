@@ -1,4 +1,4 @@
-const csvFilePath = 'export.csv'
+//const csvFilePath = 'export.csv'
 const csv = require('csvtojson')
 const fs = require('fs')
 
@@ -6,6 +6,7 @@ const fs = require('fs')
 
 async function main() {
   let my_address = process.argv[2]
+  let csvFilePath = process.argv[3]
   if (my_address == undefined) {
     console.log('node csv your_account_address')
     return
