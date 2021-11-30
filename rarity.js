@@ -48,6 +48,12 @@ async function main() {
     let xp = result._xp
     let level = result._level
     let _class = parseInt(result._class)
+    let start_date = new Date().getTime()
+    console.log(new Date(start_date).toLocaleDateString() + ' ' + new Date(start_date).toLocaleTimeString())
+    if (Math.floor(start_date / 1000) < next_adventure) {
+      console.log('wait ' + (next_adventure - Math.floor(start_date / 1000)) + ' seconds for next adventure')
+      return
+    }
     if (_class == 0) {
       console.log('call summoner error')
       return

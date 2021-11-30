@@ -18,7 +18,7 @@ const options = {
 }
 
 const fantom_rpc = 'https://rpcapi.fantom.network'
-const gas_price = 20e10
+const gas_price = 28e10
 const gas_limit = 300000
 const confirmation_number = 1
 
