@@ -85,7 +85,7 @@ async function main() {
 //       await wait(5000)
 //     }
 
-    let start_date = new Date().getTime()
+    start_date = new Date().getTime()
     console.log(new Date(start_date).toLocaleDateString() + ' ' + new Date(start_date).toLocaleTimeString())
     if (Math.floor(start_date / 1000) < next_adventure) {
       console.log('wait ' + (next_adventure - Math.floor(start_date / 1000)) + ' seconds for next adventure')
